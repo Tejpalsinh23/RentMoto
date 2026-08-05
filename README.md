@@ -1,58 +1,204 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🏍️ RentMoto
 
-## About Laravel
+### A Complete Vehicle Rental Management System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Laravel](https://img.shields.io/badge/Laravel-^13.8-red?style=for-the-badge&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-^8.3-777BB4?style=for-the-badge&logo=php)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-^3.1-06B6D4?style=for-the-badge&logo=tailwindcss)
+![Vite](https://img.shields.io/badge/Vite-^8.0-646CFF?style=for-the-badge&logo=vite)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+RentMoto is a full-featured vehicle rental platform built with **Laravel 13**, **Tailwind CSS**, and **Alpine.js**. It lets customers browse, book, and pay for vehicles online while providing administrators with a powerful dashboard to manage the entire fleet, bookings, payments, and content.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Features
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🚗 Customer Facing
+- **Vehicle Catalog** — Browse cars, bikes, scooters, SUVs, EVs, vans, and more with rich filters (category, brand, fuel type, transmission, price).
+- **Vehicle Details** — Detailed specs, image galleries, features list, and customer reviews.
+- **Online Booking** — Real-time price calculation (days, tax, discounts) with pickup/return location & date selection.
+- **Coupon Discounts** — Apply promo codes (percentage or fixed amount) at checkout.
+- **Wishlist** — Save favourite vehicles for later.
+- **Reviews & Ratings** — Leave star ratings and comments after a rental.
+- **Blog** — Travel tips and EV guides with categories and comments.
+- **Contact & Newsletter** — Contact form and newsletter subscription.
+- **PDF Invoices** — Download printable invoices for booked rentals.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 👤 Customer Dashboard
+- View and track booking history & status.
+- Manage wishlist, reviews, and profile settings (name, email, password).
 
-## Agentic Development
+### 🛡️ Admin Panel
+- **Dashboard** — Overview of revenue, bookings, fleet, and customers.
+- **Vehicle Management** — Full CRUD for vehicles, categories, brands, and image galleries.
+- **Booking Management** — View, filter, and update booking statuses (pending → confirmed → completed/cancelled).
+- **Customers** — List and manage registered customers.
+- **Payments** — Track payment transactions and statuses.
+- **Reviews Moderation** — Approve or reject customer reviews.
+- **Coupons** — Create and manage discount codes with usage limits.
+- **Reports** — Export booking & revenue reports.
+- **Content Management** — Locations, FAQs, blogs, contact messages, and newsletter subscribers.
+- **Site Settings** — Configure site name, currency, tax rate, and contact information.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## 🧰 Tech Stack
 
-php artisan boost:install
+| Layer      | Technology                                    |
+|------------|-----------------------------------------------|
+| Backend    | Laravel 13, PHP ^8.3                           |
+| Frontend   | Blade, Tailwind CSS ^3.1, Alpine.js           |
+| Build Tool | Vite ^8.0, Laravel Vite Plugin                 |
+| Database   | MySQL (compatible with SQLite for development) |
+| Auth       | Laravel Breeze (role-based: admin / customer)  |
+| PDF        | barryvdh/laravel-dompdf                        |
+| Testing    | PHPUnit, Laravel Pint                          |
+
+---
+
+## 📁 Project Structure
+
+```
+RentMoto/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/         # Admin-side controllers
+│   │   │   ├── Customer/      # Customer dashboard & booking
+│   │   │   ├── Auth/          # Authentication controllers
+│   │   │   └── ...            # Home, Payment, Invoice, Profile
+│   │   └── Middleware/        # AdminMiddleware (role guard)
+│   ├── Models/                # Eloquent models
+│   └── View/Components/       # Layout components
+├── database/
+│   ├── migrations/            # Schema (incl. rental system tables)
+│   └── seeders/               # Demo data (vehicles, users, coupons...)
+├── resources/views/           # Blade templates
+│   ├── admin/                 # Admin panel views
+│   ├── customer/              # Customer dashboard views
+│   ├── vehicles/              # Catalog & detail views
+│   ├── booking/               # Checkout & invoice
+│   └── ...
+├── routes/
+│   └── web.php                # All application routes
+└── public/                    # Public assets
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🚀 Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prerequisites
+- PHP **^8.3** with common extensions
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/) & npm
+- MySQL or SQLite
 
-## Code of Conduct
+### Setup Steps
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/RentMoto.git
+cd RentMoto
 
-## Security Vulnerabilities
+# 2. Install PHP dependencies
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 3. Install front-end dependencies
+npm install
 
-## License
+# 4. Set up environment
+cp .env.example .env
+php artisan key:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 5. Configure your database in .env, then migrate
+php artisan migrate --seed
+
+# 6. Build front-end assets
+npm run build
+
+# 7. Start the development server
+php artisan serve
+```
+
+> 💡 **Tip:** Use the one-command setup script:
+> ```bash
+> composer run setup
+> ```
+
+The app will be available at `http://localhost:8000`.
+
+### Demo Credentials
+
+| Role     | Email                     | Password   |
+|----------|---------------------------|------------|
+| Admin    | `admin@rentalsystem.com`  | `password` |
+| Customer | `customer@rentalsystem.com` | `password` |
+
+---
+
+## 🧪 Running Tests
+
+```bash
+composer run test
+# or
+php artisan test
+```
+
+Run code style checks with Laravel Pint:
+
+```bash
+./vendor/bin/pint
+```
+
+---
+
+## 🖥️ Development
+
+Start the Vite dev server and Laravel dev tools together:
+
+```bash
+composer run dev
+```
+
+This runs the application server, queue worker, Pail logs, and Vite hot-reload concurrently.
+
+---
+
+## 📬 Routing Overview
+
+| Area     | Prefix    | Description                        |
+|----------|-----------|------------------------------------|
+| Public   | `/`        | Home, vehicles, blog, about, contact |
+| Customer | `/dashboard` | Booking history, wishlist, reviews, settings |
+| Booking  | `/booking`  | Price calculation & checkout      |
+| Payment  | `/payment`  | Payment gateway, processing, success |
+| Admin    | `/admin`    | Full admin dashboard & management  |
+
+---
+
+## 🗄️ Database Schema
+
+The rental system includes 17+ tables:
+- `vehicles`, `vehicle_categories`, `brands`, `vehicle_images`
+- `locations`, `bookings`, `payments`, `coupons`
+- `reviews`, `wishlists`
+- `blog_categories`, `blogs`, `comments`
+- `faqs`, `contact_messages`, `newsletter_subscribers`, `settings`
+
+---
+
+## 📜 License
+
+This project is open-sourced under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+<div align="center">
+  Made with ❤️ using Laravel
+</div>
